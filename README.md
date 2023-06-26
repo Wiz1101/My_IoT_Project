@@ -1,8 +1,8 @@
 # My_IoT_Project
 
-Project for the course Introduction to Applied IoT, Summer 2022
+Project for the course Introduction to Applied IoT, Summer 2023
 
-**Name:** Johannes Eriksson; **Student** credentials: je224bk
+**Name:** Shota Napetvaridze; **Student** credentials: sn223ki
 
 # Short project overview
 This project is aimed to construct a simple iot device with 2 sensors for placement besides your plant that monitors the temperature and air humidity around the plant aswell as the humidity in the plants soil in order to se when you need to water your plant. 
