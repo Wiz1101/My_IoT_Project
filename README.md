@@ -2,7 +2,7 @@
 
 Project for the course Introduction to Applied IoT, Summer 2023
 
-**Name:** Shota Napetvaridze; 
+**Name:** Shota Napetvaridze <br>
 **Student:** sn223ki
 
 # Short project overview
