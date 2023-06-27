@@ -1,4 +1,4 @@
-# My_IoT_Project
+# Temperature and humidity sensor node
 
 Project for the course Introduction to Applied IoT, Summer 2023
 
