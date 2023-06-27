@@ -6,7 +6,7 @@ Project for the course Introduction to Applied IoT, Summer 2023
 **Student:** sn223ki
 
 # Short project overview
-This project is aimed to construct a simple iot device with 2 sensors for placement besides your plant that monitors the temperature and air humidity around the plant aswell as the humidity in the plants soil in order to se when you need to water your plant. 
+In this project I built a sensor node with an ESP8266 that publishes the temperature and humidity once a day to a free service called Thing Speak.
 
 **Approxiamtion of time needed for the project:**
 
