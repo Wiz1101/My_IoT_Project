@@ -324,5 +324,5 @@ Figure 9: Finalized project
 
 **Final Thoughts**
 
-I would describe the results of the project as fulfilling because I successfully achieved my initial goals. With my previous programming experience, I found the coding aspect of the project relatively manageable, except for some difficulties encountered when presenting data on Thingspeak.com.
+I would describe the results of the project as fulfilling because I successfully achieved my initial goals. With my previous programming experience, I found the coding aspect of the project relatively manageable, except for some difficulties encountered when presenting data on Thingspeak.com specifically The error I was getting due to an issue with the construction of the HTTP request. .
 
