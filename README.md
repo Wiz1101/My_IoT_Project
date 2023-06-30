@@ -251,6 +251,23 @@ void makeHTTPRequest() {
 }
 
 ```
+Result 
+```
+WiFi connected in: 4552, IP address: 192.168.1.4
+Humidity: 36.00 %	 Temperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *FHumidity: 36.00 %	 Tmperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *F
+Connecting to api.thingspeak.com
+Request resource: /update?api_key=HTTP/1.1 200 OK
+Date: Fri, 30 Jun 2023 14:41:31 GMT
+Content-Type: text/plain; charset=utf-8
+Content-Length: 1
+Connection: close
+Status: 200 OK
+Cache-Control: max-age=0, private, must-revalidate
+Access-Control-Allow-Origin: *
+Access-Control-Max-Age: 1800
+X-Request-Id: af4fd6d3-91ed-4e13-934c-54b3368c784e
+
+```
 
 Then there is variables that are used later in the code, configuration for network and adrafruit and then Setup of the sensors
 ![Screenshot 2022-07-04 175535](https://user-images.githubusercontent.com/108582271/177188324-6c395256-11cb-4a19-aa8a-82b2184e3fb5.jpg)
