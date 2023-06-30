@@ -25,7 +25,7 @@ The project is able to give insights in basic concepts of IOT, programming and e
 
 # Material
 Component | Purpose of | Bought at | Price 
--| -| -
+-| -| -| -
 ESP8266 | A microcontroller used for data collection, data transfer, and data analysis. | Mine 
 Capacitive soil moisture sensor | A sensor that mesures the humidity in soil  | amazon.se 
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature | sizable.se | 28 sek
