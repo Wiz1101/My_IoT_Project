@@ -79,10 +79,11 @@ The EPS8266 is put on in right side of the breadboard. It is powerd by a micro U
 Both sensors have a GND pin that is also connected to the breadboards GND line VCC that is connected to the breadboards power supply line. Then each have one data transfer pin, since the capacitive soil moisture sensor is a analog senor then the data pin is wired to a ADC (Analogue to Digital Converter)  pin in this case GPIO36 and DHT11 is connected to GPIO14.
 
 # Chosen platform
-The platform i choose for this project is Adafruit since it is a free cloud service that seemed to fit my project with what it has to offer. It is able to easily visualize your data in real-time online in their dashboard where you can choose if you want to see it in a diagram, as a Gauge or any other form. It also offers the opportunity to analyse the data online in simple ways by going to the feeds.
 
-![Screenshot 2022-07-03 161432](https://user-images.githubusercontent.com/108582271/177043837-c7ffd412-ce5b-40e6-ada5-160e3ae2873e.jpg)
-Figure 3: The dashboard page on Adafruit
+The platform I selected for this project is ThingSpeak since it is a free cloud service that aligns well with the requirements of my project. ThingSpeak provides convenient features for visualizing data in real-time on their online dashboard, allowing users to choose various display formats such as diagrams or gauges. Additionally, it offers the capability to analyze the data online through the channels, providing simple and accessible ways to perform data analysis.
+
+![Alt text](img/H&T.png)
+Figure 3: The dashboard page on Thingspeak
 
 # The code
 The first code part shown in figure 4 has first the necessary libaries that is needed for the project such as machine that is used for connecting to the microcontroller, dht that is used for getting the DHT11 sensor to work, network for connecting the device to wifi and mqtt for sending data over the internet.
