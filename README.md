@@ -31,7 +31,7 @@ DHT11 | A sensor used for mesuring the humidity in the air asweel as the tempera
 40x jumper wires Male/Female | 	Wires for connecting the different components
 4.7k Ohm resistor | prevents it from floating when the sensor is not actively transmitting data 
 Breadboard 800 points | A board used to easy connect the sensors without soldering 
-Micro USB cable | Connection between a microcontroller and computer
+Micro USB cable | Connection between ESP8266 and a computer
 
 The Items above were already in possession.
 
