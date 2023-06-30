@@ -81,30 +81,28 @@ The first code part shown in figure 4 has first the necessary libaries that is n
  * Shota Napetvaridze
  * Complete Project Details https://github.com/Wiz1101/My_IoT_Project
  */
- 
+
 #include <ESP8266WiFi.h>
 #include <ESPDailyTask.h>
 #include "DHT.h"
 
-// Uncomment one of the lines below for whatever DHT sensor type you're using!
-#define DHTTYPE DHT11   // DHT 11
-//#define DHTTYPE DHT21   // DHT 21 (AM2301)
-//#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
+// DHT sensor
+#define DHTTYPE DHT11  // DHT 11
 
 // Replace with your SSID and Password
-const char* ssid     = "";
+const char* ssid = "";
 const char* password = "";
 
 // Replace with your unique Thing Speak WRITE API KEY
-const char* apiKey = "GS9GGCRA0BSLRS6P";
+const char* apiKey = "";
 
 const char* resource = "/update?api_key=";
 
-// Thing Speak API server 
+// Thing Speak API server
 const char* server = "api.thingspeak.com";
 
-// Set this for what time your daily code should run 
-ESPDailyTask dailyTask(11*60 + 15); // 11:15am
+// Set this for what time your daily code should run
+ESPDailyTask dailyTask(11 * 60 + 15);  // 11:15am
 
 // DHT Sensor
 const int DHTPin = 5;
@@ -119,16 +117,16 @@ void setup() {
   // Initializing serial port for debugging purposes
   Serial.begin(115200);
   delay(10);
-  
+
   dailyTask.sleep1Day();
-  
+
   // put your daily code here...
   dht.begin();
-  
+
   initWifi();
   makeHTTPRequest();
 
-  // and back to sleep once daily code is done  
+  // and back to sleep once daily code is done
   dailyTask.backToSleep();
 }
 
@@ -138,25 +136,25 @@ void loop() {
 
 // Establish a Wi-Fi connection with your router
 void initWifi() {
-  Serial.print("Connecting to: "); 
+  Serial.print("Connecting to: ");
   Serial.print(ssid);
-  WiFi.begin(ssid, password);  
+  WiFi.begin(ssid, password);
 
-  int timeout = 10 * 4; // 10 seconds
-  while(WiFi.status() != WL_CONNECTED  && (timeout-- > 0)) {
+  int timeout = 10 * 4;  // 10 seconds
+  while (WiFi.status() != WL_CONNECTED && (timeout-- > 0)) {
     delay(250);
     Serial.print(".");
   }
   Serial.println("");
 
-  if(WiFi.status() != WL_CONNECTED) {
-     Serial.println("Failed to connect, going back to sleep");
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Failed to connect, going back to sleep");
+  } else {
+    Serial.print("WiFi connected in: ");
+    Serial.print(millis());
+    Serial.print(", IP address: ");
+    Serial.println(WiFi.localIP());
   }
-
-  Serial.print("WiFi connected in: "); 
-  Serial.print(millis());
-  Serial.print(", IP address: "); 
-  Serial.println(WiFi.localIP());
 }
 
 // Make an HTTP request to Thing Speak
@@ -170,20 +168,19 @@ void makeHTTPRequest() {
   // Check if any reads failed and exit early (to try again).
   if (isnan(h) || isnan(t) || isnan(f)) {
     Serial.println("Failed to read from DHT sensor!");
-    strcpy(temperatureTemp,"Failed");
+    strcpy(temperatureTemp, "Failed");
     strcpy(humidityTemp, "Failed");
-    return;    
-  }
-  else {
+    return;
+  } else {
     // Computes temperature values in Celsius + Fahrenheit and Humidity
-    float hic = dht.computeHeatIndex(t, h, false); 
-    // Comment the next line, if you prefer to use Fahrenheit      
+    float hic = dht.computeHeatIndex(t, h, false);
+    // Comment the next line, if you prefer to use Fahrenheit
     dtostrf(hic, 6, 2, temperatureTemp);
-                 
+
     float hif = dht.computeHeatIndex(f, h);
     // Uncomment the next line, if you want to use Fahrenheit
-    //dtostrf(hif, 6, 2, temperatureTemp);   
-          
+    //dtostrf(hif, 6, 2, temperatureTemp);
+
     dtostrf(h, 6, 2, humidityTemp);
     // You can delete the following Serial.print's, it's just for debugging purposes
     Serial.print("Humidity: ");
@@ -209,41 +206,50 @@ void makeHTTPRequest() {
     Serial.print(hif);
     Serial.println(" *F");
   }
-  
-  Serial.print("Connecting to "); 
+
+  Serial.print("Connecting to ");
   Serial.print(server);
-  
+
   WiFiClient client;
   int retries = 5;
-  while(!!!client.connect(server, 80) && (retries-- > 0)) {
+  while (!client.connect(server, 80) && (retries-- > 0)) {
     Serial.print(".");
   }
   Serial.println();
-  if(!!!client.connected()) {
-     Serial.println("Failed to connect, going back to sleep");
+  if (!client.connected()) {
+    Serial.println("Failed to connect, going back to sleep");
   }
-  
-  Serial.print("Request resource: "); 
-  Serial.println(resource);
-  client.print(String("GET ") + resource + apiKey + "&field1=" + humidityTemp + "&field2=" + temperatureTemp +
-                  " HTTP/1.1\r\n" +
-                  "Host: " + server + "\r\n" + 
-                  "Connection: close\r\n\r\n");
-                  
-  int timeout = 5 * 10; // 5 seconds             
-  while(!!!client.available() && (timeout-- > 0)){
+
+  Serial.print("Request resource: ");
+  Serial.print(resource);
+
+
+
+  String payload = String(apiKey) + "&field1=" + String(humidityTemp) + "&field2=" + String(temperatureTemp);
+  String httpRequest = "POST " + String(resource) + apiKey + " HTTP/1.1\r\n";
+  httpRequest += "Host: " + String(server) + "\r\n";
+  httpRequest += "Connection: close\r\n";
+  httpRequest += "Content-Type: application/x-www-form-urlencoded\r\n";
+  httpRequest += "Content-Length: " + String(payload.length()) + "\r\n\r\n";
+  httpRequest += payload;
+
+  client.print(httpRequest);
+
+  int timeout = 5 * 10;  // 5 seconds
+  while (!client.available() && (timeout-- > 0)) {
     delay(100);
   }
-  if(!!!client.available()) {
-     Serial.println("No response, going back to sleep");
+  if (!client.available()) {
+    Serial.println("No response, going back to sleep");
   }
-  while(client.available()){
+  while (client.available()) {
     Serial.write(client.read());
   }
-  
+
   Serial.println("\nclosing connection");
   client.stop();
 }
+
 ```
 
 Then there is variables that are used later in the code, configuration for network and adrafruit and then Setup of the sensors
