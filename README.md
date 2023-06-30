@@ -1,4 +1,4 @@
-# Temperature and humidity sensor node
+# Temperature and humidity measurer
 
 Project for the course Introduction to Applied IoT, Summer 2023
 
