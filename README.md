@@ -6,7 +6,7 @@ Project for the course Introduction to Applied IoT, Summer 2023
 **Student:** sn223ki
 
 # Short project overview
-In this project I built a sensor node with an ESP8266 that publishes the temperature and humidity once a day to a free service called Thing Speak.
+In this project I built a sensor node with an ESP8266 that publishes the temperature and humidity once a day to a free service called Thing Speak which allows users to communicate with internet enabled devices.
 
 **Approxiamtion of time needed for the project:**
 
@@ -15,18 +15,18 @@ Around one hour to two hours
 
 # Objective
 **Reasons for choosing the project:**
-The reason i choose this project is that i have some plants in my home and have the habit of sometimes forgetting to water them in time before they start to wither so being able to the when i should water the plants depending on the soils moisture level will probably counteract that. 
+The reason I choose this project is that I have a plant at home and I decided to create the perfect environment for it.
 
 **Purposes of the project:**
-The purpose of this project is firstly to learn about the Inter of things, how to build a iot device and connect it to a platform to visualize its data. And secondly to monitor my plants to see when i need to water them.
+The main objective of this project is twofold. Firstly, it aims to provide a learning experience about the Internet of Things (IoT), including understanding how to construct an IoT device and connect it to a platform for visualizing its data. Secondly, it aims to create an ideal environment for nurturing and taking care of a plant.
 
 **Insights gained by doing the project:**
-The project is able to give insights in basic concepts of IOT, programming and electric circuits. 
+The project offers an opportunity to gain an understanding of fundamental concepts in IoT, programming language (C++), and electrical circuits. It provides insights into these areas of knowledge.
 
 # Material
-Component | Purpose of   
+Component | Purpose    
 -| -| 
-Wifi Module (ESP8266) | A microcontroller used for data collection, data transfer, and data analysis. 
+ESP8266 | A microcontroller used for data collection, data transfer, and data analysis. 
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature 
 40x jumper wires Male/Female | 	Wires for connecting the different components
 4.7k Ohm resistor | prevents it from floating when the sensor is not actively transmitting data 
@@ -40,7 +40,7 @@ Figure 1: Components used for the project
 
 All components are shown in Figure 1. From left to right:
 * Breadboard
-* Wifi Module (ESP8266)
+* ESP8266
 * 4.7k Ohm resistor
 * Jumper wires
 * DHT11
@@ -51,7 +51,7 @@ All components are shown in Figure 1. From left to right:
 **Setting up the IDE:**
 
 
-The first step is to install Arduino IDE (https://www.arduino.cc/en/software) and then set up ESP8266 add-ons. After installation we have to install two Arduino libraries: 
+The first step is setting up IDE.In my case, I installed Arduino IDE (https://www.arduino.cc/en/software). After installation we have to install two Arduino libraries: 
 
 ![Alt text](img/library-1.png)
 
@@ -72,9 +72,9 @@ The setup of the device and the wiring is shown in a circuit diagram in Figure 3
 
 ![Alt text](img/circuit.png)
 
-Figure 2: Wiring of the components
+Figure 3: Wiring of the components
 
-The EPS32 is put on in right side of the breadboard so the left side pins of the microcontroller can be used. It is powerd by a micro USB cable either connected to a power supply or to a computer. The Vin pin is connected to the breadboards power supply line to give power to the senors and the GND pin is conneced to the GND line. 
+The EPS8266 is put on in right side of the breadboard. It is powerd by a micro USB cable either connected to a power supply or to a computer. The Vin pin is connected to the breadboards power supply line to give power to the senors and the GND pin is conneced to the GND line. 
 
 Both sensors have a GND pin that is also connected to the breadboards GND line VCC that is connected to the breadboards power supply line. Then each have one data transfer pin, since the capacitive soil moisture sensor is a analog senor then the data pin is wired to a ADC (Analogue to Digital Converter)  pin in this case GPIO36 and DHT11 is connected to GPIO14.
 
@@ -297,7 +297,7 @@ Figure 6: Third code snippet
 
 # Transmitting the data / connectivity
 
-I decided to send data once every 15 minutes since the purpose of this project is to know when i need to water my plant and since the moisture in the soil does not change that fast then 15 seemed like a good time beetween each measuring. 
+I chose to send data at a 24-hour interval because the main objective of this project is to monitor the plant's environment. Hence, I deemed a 24-hour gap to be sufficient for this purpose.
 
 Wifi was the wireless protocols used for this project because the micocontroller setup is in my home close to my router and do not need any protocol with longer range because of that. Wifi also has no recurring costs, low latency and less bandwidth restrictions so it seemed like to best options.
 
@@ -315,14 +315,13 @@ Figure 8: The air moisture feed page on Adafruit
 
 # Finalizing the design
 After assembling the project this is result.
-![20220704_204437](https://user-images.githubusercontent.com/108582271/177205477-455ef7d7-c685-43dc-b70d-454be5df1975.jpg)
+![Alt text](img/final-1.JPG)
 Figure 8: Finalized project
-![20220704_204443](https://user-images.githubusercontent.com/108582271/177205443-8add9629-6cae-42b0-b9d9-350867fc480f.jpg)
-Figure 9: Capacitive soil moisture sensor
-![20220704_204429](https://user-images.githubusercontent.com/108582271/177205457-6fb6f156-da45-4cb4-b2da-a7c26689adff.jpg)
-Figure 10: Finalized project
+
+![Alt text](img/final-2.JPG)
+Figure 9: Finalized project
 
 **Final Thoughts**
 
-I would say that the outcome of the project is satisfactory since i was able to accomplish what i had set out to do. Having prior experience with programming I found that the coding part of the project not that challenging except for getting the Capacitive soil moisture sensor to messure correct data which took quite some googeling to find a answer to and other than that everything whent on without any big struggels since the course had a lot of good turorials to follow.
+I would describe the results of the project as fulfilling because I successfully achieved my initial goals. With my previous programming experience, I found the coding aspect of the project relatively manageable, except for some difficulties encountered when presenting data on Thingspeak.com.
 
