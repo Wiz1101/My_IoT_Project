@@ -88,7 +88,10 @@ The platform I selected for this project is ThingSpeak since it is a free cloud 
 Figure 3: The dashboard page on Thingspeak
 
 # The code
-The first code part shown in figure 4 has first the necessary libaries that is needed for the project such as machine that is used for connecting to the microcontroller, dht that is used for getting the DHT11 sensor to work, network for connecting the device to wifi and mqtt for sending data over the internet.
+The code sets up the ESP8266 to run a daily task at a specific time (11:15 AM) where it reads data from a DHT sensor (humidity and temperature), establishes a Wi-Fi connection, and sends the data to the ThingSpeak server using an HTTP POST request. The microcontroller then goes back to deep sleep and repeats the process the next day. 
+
+
+Code snippet 1: Source code
 ```
 /*
  * ESP8266 Daily Task
@@ -265,7 +268,13 @@ void makeHTTPRequest() {
 }
 
 ```
-Result 
+The program begins by including the required libraries for the project. The code utilizes the ESP8266WiFi library to manage Wi-Fi connections, the ESPDailyTask library for scheduling daily tasks on the ESP8266, and the DHT library to interact with the DHT temperature and humidity sensor.
+
+
+
+
+
+Code snippet 2: Result of establishing a Wi-Fi connection, and sending the data to the ThingSpeak server using an HTTP POST request.
 ```
 WiFi connected in: 4552, IP address: 192.168.1.4
 Humidity: 36.00 %	 Temperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *FHumidity: 36.00 %	 Tmperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *F
@@ -282,6 +291,7 @@ Access-Control-Max-Age: 1800
 X-Request-Id: af4fd6d3-91ed-4e13-934c-54b3368c784e
 
 ```
+
 
 
 
