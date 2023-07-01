@@ -67,7 +67,7 @@ The next step is to set environment for ESP8266 in Arduino IDE. In my case I cho
 Figure 3: Configuring enviroment in Arduino IDE for ESP8266
 
 
-You are now ready to run your code on the development board. In order to uppload the code you need to open the Pymakr plugin that you find at the bottom and go into its setting and choose global settings. Enter the device com port into the Device address (list) field (which can be found in the device manager) and remove the check box selection from Safe-boot before upload. Go back and press Connect device in Pymakr and choose your COM port to connect to your board. Now you just need to press Upload project to device in order to run your code on the board.
+You are now ready to run your code on the development board. In order to uppload the code you need to open the Arduino IDE.  Enter the device com port into the Device address (list) field (which can be found in the device manager) and remove the check box selection from Safe-boot before upload. Go back and press Connect device in Pymakr and choose your COM port to connect to your board. Now you just need to press Upload project to device in order to run your code on the board.
 
 # Putting everything together
 The setup of the device and the wiring is shown in a circuit diagram in Figure 3.
@@ -295,12 +295,11 @@ As for the transport protocols MQTT and webhooks is used in this project. MQTT i
 
 # Presenting the data
 The dashboard on adafruit is set up by 3 feeds of data one for air moisture, one for soil moisture and one for temperature. Each of these 3 feed have 1 diagram showing how the value of each sensor has changed over the past 7 days. For the two moisture feeds a gauge was chosen to display att what percentage of moisture the sensors was at the last reading and for the temperature a text field shows what temeprature it was at the last reading.
-![Screenshot 2022-07-03 191415](https://user-images.githubusercontent.com/108582271/177193430-7dc68de6-9abf-402a-b8de-eedfad6e255d.jpg)
+![Alt text](img/hum.png)
 Figure 7: The dashboard page on Adafruit
 
 You can also go in to each feed where you can see a more detaild diagram over the data and get each value in a table where you can see the exact value and at what time it was sent.
-
-![Screenshot 2022-07-03 191349](https://user-images.githubusercontent.com/108582271/177193444-15fbc08c-1af1-4815-84bb-8d8460aab52c.jpg)
+![Alt text](img/temp.png)
 Figure 8: The air moisture feed page on Adafruit
 
 # Finalizing the design
