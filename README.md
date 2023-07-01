@@ -91,7 +91,7 @@ Figure 3: The dashboard page on Thingspeak
 The code sets up the ESP8266 to run a daily task at a specific time (11:15 AM) where it reads data from a DHT sensor (humidity and temperature), establishes a Wi-Fi connection, and sends the data to the ThingSpeak server using an HTTP POST request. The microcontroller then goes back to deep sleep and repeats the process the next day. 
 
 
-Code snippet 1: Source code
+<mark>Code snippet 1: Source code</mark>
 ```
 /*
  * ESP8266 Daily Task
@@ -268,13 +268,35 @@ void makeHTTPRequest() {
 }
 
 ```
-The program begins by including the required libraries for the project. The code utilizes the ESP8266WiFi library to manage Wi-Fi connections, the ESPDailyTask library for scheduling daily tasks on the ESP8266, and the DHT library to interact with the DHT temperature and humidity sensor.
+The program begins by including the required libraries for the project. The code utilizes the ESP8266WiFi library to manage Wi-Fi connections, the ESPDailyTask library for scheduling daily tasks on the ESP8266, and the DHT library to interact with the DHT temperature and humidity sensor.Let's go through each function in the code and explain what it does: 
+
+1. setup(): function runs once when the microcontroller (ESP8266) starts. It is used for initializing and configuring various components and libraries before entering the main loop. In this code, it performs the following actions:
+    * Initializes the serial communication for debugging purposes (using the Serial.begin() function).
+    * Sets a delay of 10 milliseconds (using delay(10)) to allow the serial communication to stabilize.
+    * Calls dailyTask.sleep1Day(), which will put the microcontroller into deep sleep for approximately 24 hours. The purpose is to make the code run daily at a specific time, which is set in the dailyTask object.
+    * Initializes the DHT (humidity and temperature) sensor with the dht.begin() function. Calls the initWifi() function to establish a Wi-Fi connection.
+    * Calls the makeHTTPRequest() function to send data to the ThingSpeak server.
+    * After completing the above tasks, it calls dailyTask.backToSleep() to put the microcontroller back to sleep for another 24 hours.
+
+2. loop(): This loop function runs repeatedly after the setup() function is executed. In this code, the loop() function is empty because the main task is performed in the setup() function. The loop is intentionally kept empty to save power since the microcontroller goes to deep sleep and wakes up again after 24 hours.
+
+3. initWifi(): This function is responsible for establishing a Wi-Fi connection with the specified router. It uses the WiFi.begin() function to connect to the Wi-Fi network and waits for the connection to be established within a timeout period. If the connection is successful, it prints the Wi-Fi connection details (local IP address) to the serial monitor.
+
+4. makeHTTPRequest(): This function is used to make an HTTP POST request to the ThingSpeak server to send sensor data. Here's how it works:
+    * Reads the temperature and humidity data from the DHT sensor using dht.readHumidity() and dht.readTemperature() functions, respectively.
+    * Checks if any of the readings are invalid (NaN), indicating a failed sensor reading. If any of the readings are invalid, it sets the temperatureTemp and humidityTemp variables to "Failed" and returns without making the HTTP request.
+    * If the sensor readings are valid, it computes the heat index for both Celsius and Fahrenheit (if applicable) using the dht.computeHeatIndex() function.
+    * Converts the sensor readings and heat index values to strings using dtostrf() and stores them in the temperatureTemp and humidityTemp variables.
+    * Creates an HTTP request payload with the API key and sensor data in the format required by ThingSpeak.
+    * Establishes a connection to the ThingSpeak server using a WiFiClient object and the client.connect() function.
+    * Constructs an HTTP POST request with the payload and sends it to the server using the client.print() function.
+    * Waits for a response from the server within a timeout period. If no response is received, it prints "No response, going back to sleep" to the serial monitor and returns.
+    * If a response is received, it prints the response data to the serial monitor and closes the connection with the server using client.stop().
 
 
 
+<mark>Code snippet 2: Terminal output of establishing a Wi-Fi connection, and sending the data to the ThingSpeak server using an HTTP POST request.</mark>
 
-
-Code snippet 2: Result of establishing a Wi-Fi connection, and sending the data to the ThingSpeak server using an HTTP POST request.
 ```
 WiFi connected in: 4552, IP address: 192.168.1.4
 Humidity: 36.00 %	 Temperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *FHumidity: 36.00 %	 Tmperature: 25.10 *C 77.18 *F	 Heat index: 24.61 *C 76.29 *F
@@ -297,9 +319,13 @@ X-Request-Id: af4fd6d3-91ed-4e13-934c-54b3368c784e
 
 # Transmitting the data / connectivity
 
+
 I chose to send data at a 24-hour interval because the main objective of this project is to monitor the plant's environment. Hence, I deemed a 24-hour gap to be sufficient for this purpose.
 
 Wifi was the wireless protocols used for this project because the micocontroller setup is in my home close to my router and do not need any protocol with longer range because of that. Wifi also has no recurring costs, low latency and less bandwidth restrictions so it seemed like to best options.
+
+akjslkasbf;kasbf;kasf;kash;fhas;fhasfhj;kashf;
+
 
 As for the transport protocols MQTT and webhooks is used in this project. MQTT is used for sending the data measured by the sensors to adafruit. It was choosen because it is a lightweight, energy-efficient and easy to use Transport protocol. Webhooks is also used for when the moisture level in the soil reaches under 30 percent to send a message to my discord that it is time to water my plant.
 
