@@ -55,15 +55,17 @@ The first step is setting up IDE.In my case, I installed Arduino IDE (https://ww
 
 ![Alt text](img/library-1.png)
 
-Note: you may also need to install the Adafruit Sensor library.
+Note: you may also need to install Adafruit Sensor and Aduinojson libraries.
 
 ![Alt text](img/library-2.png)
 
 In this project, I used the website https://ThingSpeak.com. By using ThingSpeak, you can share your sensor data on their platform and visualize it on a graph along with timestamps. This enables you to conveniently access your sensor readings from any location worldwide.
 
-The next step is to update the firmware of the ESP32. This is done by donwloading this file https://micropython.org/resources/firmware/esp32-20220117-v1.18.bin to your computer and on this website https://nabucasa.github.io/esp-web-flasher/ connect your development board by choosing 460800 Baud in the top right corner and pressing connect. You then press erase to delete the files on the board so that you then can enter aoffset of 100 and in "choose file" select the downloaded file and then press "Program".(It takes a while and during this time don’t disconnect your board from the USB cable)
+The next step is to set environment for ESP8266 in Arduino IDE. In my case I chose NodeMCU 0.9 (ESP-12 Module) from ESP8266 boards 
 
-The next thing to do is to download and install Node js (Windows download link https://nodejs.org/en/) and choose a IDE for the project and i choose work in Atom.io (Windows download link https://atom.io/). Then add the Pymakr plugin to Atom by going to File >> Settings >> Install and Look for Pymakr and Install it. (It takes a while; wait until shows it is successfully installed)
+![Alt text](img/arduinoIDE_conf.png)
+Figure 3: Configuring enviroment in Arduino IDE for ESP8266
+
 
 You are now ready to run your code on the development board. In order to uppload the code you need to open the Pymakr plugin that you find at the bottom and go into its setting and choose global settings. Enter the device com port into the Device address (list) field (which can be found in the device manager) and remove the check box selection from Safe-boot before upload. Go back and press Connect device in Pymakr and choose your COM port to connect to your board. Now you just need to press Upload project to device in order to run your code on the board.
 
@@ -72,7 +74,7 @@ The setup of the device and the wiring is shown in a circuit diagram in Figure 3
 
 ![Alt text](img/circuit.png)
 
-Figure 3: Wiring of the components
+Figure 4: Wiring of the components
 
 The EPS8266 is put on in right side of the breadboard. It is powerd by a micro USB cable either connected to a power supply or to a computer. The Vin pin is connected to the breadboards power supply line to give power to the senors and the GND pin is conneced to the GND line. 
 
@@ -82,7 +84,7 @@ Both sensors have a GND pin that is also connected to the breadboards GND line V
 
 The platform I selected for this project is ThingSpeak since it is a free cloud service that aligns well with the requirements of my project. ThingSpeak provides convenient features for visualizing data in real-time on their online dashboard, allowing users to choose various display formats such as diagrams or gauges. Additionally, it offers the capability to analyze the data online through the channels, providing simple and accessible ways to perform data analysis.
 
-![Alt text](img/H&T.png)
+![Alt text](img/dashboard.png)
 Figure 3: The dashboard page on Thingspeak
 
 # The code
