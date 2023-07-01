@@ -66,8 +66,19 @@ The next step is to set environment for ESP8266 in Arduino IDE. In my case I cho
 ![Alt text](img/arduinoIDE_conf.png)
 Figure 3: Configuring enviroment in Arduino IDE for ESP8266
 
+Next step is creating a new channel on Thingspeak and getting and API key for uploading the data.
+![Alt text](img/creatingChannel.png)
 
-You are now ready to run your code on the development board. In order to uppload the code you need to open the Arduino IDE.  Enter the device com port into the Device address (list) field (which can be found in the device manager) and remove the check box selection from Safe-boot before upload. Go back and press Connect device in Pymakr and choose your COM port to connect to your board. Now you just need to press Upload project to device in order to run your code on the board.
+You are now ready to run your code on the development board. To upload the code, follow these steps:
+
+1. Open the Arduino IDE.
+2. Replace the placeholders in the code with your actual SSID, Wi-Fi password, and API key.
+3. Make sure you have assembled the circuit according to the circuit diagram.
+4. Connect the development board to your computer.
+5. Select the appropriate board and port in the Arduino IDE.
+6. Click on the 'Upload' button to compile and upload the code to the ESP8266.
+
+Once the code is successfully uploaded, the ESP8266 will be ready to run and send data to the specified ThingSpeak channel.
 
 # Putting everything together
 The setup of the device and the wiring is shown in a circuit diagram in Figure 3.
@@ -107,11 +118,11 @@ The code sets up the ESP8266 to run a daily task at a specific time (11:15 AM) w
 #define DHTTYPE DHT11  // DHT 11
 
 // Replace with your SSID and Password
-const char* ssid = "";
-const char* password = "";
+const char* ssid = ""; // Your Wifi SSID goes here 
+const char* password = ""; // Your Wifi password goes here 
 
 // Replace with your unique Thing Speak WRITE API KEY
-const char* apiKey = "";
+const char* apiKey = ""; Your Thingspeak API key goes here 
 
 const char* resource = "/update?api_key=";
 
