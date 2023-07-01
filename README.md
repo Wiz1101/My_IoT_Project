@@ -294,13 +294,15 @@ Wifi was the wireless protocols used for this project because the micocontroller
 As for the transport protocols MQTT and webhooks is used in this project. MQTT is used for sending the data measured by the sensors to adafruit. It was choosen because it is a lightweight, energy-efficient and easy to use Transport protocol. Webhooks is also used for when the moisture level in the soil reaches under 30 percent to send a message to my discord that it is time to water my plant.
 
 # Presenting the data
-The dashboard on adafruit is set up by 3 feeds of data one for air moisture, one for soil moisture and one for temperature. Each of these 3 feed have 1 diagram showing how the value of each sensor has changed over the past 7 days. For the two moisture feeds a gauge was chosen to display att what percentage of moisture the sensors was at the last reading and for the temperature a text field shows what temeprature it was at the last reading.
+The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values over the last 24 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
+
 ![Alt text](img/hum.png)
 Figure 7: Humidity field on Thingspeak
 
-You can also go in to each feed where you can see a more detaild diagram over the data and get each value in a table where you can see the exact value and at what time it was sent.
 ![Alt text](img/temp.png)
 Figure 8: Temperature field on Thingspeak
+
+By hovering over a diagram, you can view the precise value and the corresponding timestamp of the data point.
 
 # Finalizing the design
 After assembling the project this is result.
