@@ -28,7 +28,7 @@ Component | Purpose
 -| -| 
 ESP8266 | A microcontroller used for data collection, data transfer, and data analysis. 
 DHT11 | A sensor used for mesuring the humidity in the air asweel as the temperature 
-40x jumper wires Male/Female | 	Wires for connecting the different components
+6x jumper wires Male/Female | 	Wires for connecting the different components
 4.7k Ohm resistor | prevents it from floating when the sensor is not actively transmitting data 
 Breadboard 800 points | A board used to easy connect the sensors without soldering 
 Micro USB cable | Connection between ESP8266 and a computer
