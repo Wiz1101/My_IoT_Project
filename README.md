@@ -335,10 +335,7 @@ I chose to send data at a 24-hour interval because the main objective of this pr
 
 Wifi was the wireless protocols used for this project because the micocontroller setup is in my home close to my router and do not need any protocol with longer range because of that. Wifi also has no recurring costs, low latency and less bandwidth restrictions so it seemed like to best options.
 
-akjslkasbf;kasbf;kasf;kash;fhas;fhasfhj;kashf;
-
-
-As for the transport protocols MQTT and webhooks is used in this project. MQTT is used for sending the data measured by the sensors to adafruit. It was choosen because it is a lightweight, energy-efficient and easy to use Transport protocol. Webhooks is also used for when the moisture level in the soil reaches under 30 percent to send a message to my discord that it is time to water my plant.
+In this project, the chosen protocol to transport the data is the Hypertext Transfer Protocol (HTTP). It serves the purpose of transmitting the sensor data to Thingspeak. HTTP operates as a communication protocol between a client and server, facilitating a request-response mechanism. Specifically, I used the POST request method, which enables data transmission to a server for the purpose of creating or updating a resource. For instance, it allows for the publication of sensor readings to a server.
 
 # Presenting the data
 The Thingspeak dashboard is configured with two data fields: one for humidity and one for temperature. Each field is accompanied by a diagram that displays the respective sensor values over the last 24 hours. The humidity data is presented in percentages, while the temperature data is shown in Celsius.
