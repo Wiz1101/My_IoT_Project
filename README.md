@@ -15,7 +15,7 @@ Around one hour to two hours
 
 # Objective
 **Reasons for choosing the project:**
-The reason I choose this project is that I have a plant at home and I decided to create the perfect environment for it.
+The reason I choose this project is that I have a plant at home and I decided to keep track of the indoor temperature and humidity  fot the sake of my plant.
 
 **Purposes of the project:**
 The main objective of this project is twofold. Firstly, it aims to provide a learning experience about the Internet of Things (IoT), including understanding how to construct an IoT device and connect it to a platform for visualizing its data. Secondly, it aims to create an ideal environment for nurturing and taking care of a plant.
