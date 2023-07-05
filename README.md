@@ -281,7 +281,7 @@ void makeHTTPRequest() {
 ```
 The program begins by including the required libraries for the project. The code utilizes the ESP8266WiFi library to manage Wi-Fi connections, the ESPDailyTask library for scheduling daily tasks on the ESP8266, and the DHT library to interact with the DHT temperature and humidity sensor.Let's go through each function in the code and explain what it does: 
 
-1. setup(): function runs once when the microcontroller (ESP8266) starts. It is used for initializing and configuring various components and libraries before entering the main loop. In this code, it performs the following actions:
+1. **setup()**: function runs once when the microcontroller (ESP8266) starts. It is used for initializing and configuring various components and libraries before entering the main loop. In this code, it performs the following actions:
     * Initializes the serial communication for debugging purposes (using the Serial.begin() function).
     * Sets a delay of 10 milliseconds (using delay(10)) to allow the serial communication to stabilize.
     * Calls dailyTask.sleep1Day(), which will put the microcontroller into deep sleep for approximately 24 hours. The purpose is to make the code run daily at a specific time, which is set in the dailyTask object.
@@ -289,11 +289,11 @@ The program begins by including the required libraries for the project. The code
     * Calls the makeHTTPRequest() function to send data to the ThingSpeak server.
     * After completing the above tasks, it calls dailyTask.backToSleep() to put the microcontroller back to sleep for another 24 hours.
 
-2. loop(): This loop function runs repeatedly after the setup() function is executed. In this code, the loop() function is empty because the main task is performed in the setup() function. The loop is intentionally kept empty to save power since the microcontroller goes to deep sleep and wakes up again after 24 hours.
+2. **loop()**: This loop function runs repeatedly after the setup() function is executed. In this code, the loop() function is empty because the main task is performed in the setup() function. The loop is intentionally kept empty to save power since the microcontroller goes to deep sleep and wakes up again after 24 hours.
 
-3. initWifi(): This function is responsible for establishing a Wi-Fi connection with the specified router. It uses the WiFi.begin() function to connect to the Wi-Fi network and waits for the connection to be established within a timeout period. If the connection is successful, it prints the Wi-Fi connection details (local IP address) to the serial monitor.
+3. **initWifi()**: This function is responsible for establishing a Wi-Fi connection with the specified router. It uses the WiFi.begin() function to connect to the Wi-Fi network and waits for the connection to be established within a timeout period. If the connection is successful, it prints the Wi-Fi connection details (local IP address) to the serial monitor.
 
-4. makeHTTPRequest(): This function is used to make an HTTP POST request to the ThingSpeak server to send sensor data. Here's how it works:
+4. **makeHTTPRequest()**: This function is used to make an HTTP POST request to the ThingSpeak server to send sensor data. Here's how it works:
     * Reads the temperature and humidity data from the DHT sensor using dht.readHumidity() and dht.readTemperature() functions, respectively.
     * Checks if any of the readings are invalid (NaN), indicating a failed sensor reading. If any of the readings are invalid, it sets the temperatureTemp and humidityTemp variables to "Failed" and returns without making the HTTP request.
     * If the sensor readings are valid, it computes the heat index for both Celsius and Fahrenheit (if applicable) using the dht.computeHeatIndex() function.
